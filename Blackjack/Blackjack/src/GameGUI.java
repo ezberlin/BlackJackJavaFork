@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 public class GameGUI extends JFrame {
 
@@ -128,7 +129,8 @@ GameGUI(Game game){
 }
 
 public JLabel getCardLabel(Card card) {
-    ImageIcon icon = new ImageIcon("Blackjack/Blackjack/src/cards/" + card.toString() + ".png");
+    URL imageUrl = getClass().getResource("/cards/" + card.toString() + ".png");
+    ImageIcon icon = new ImageIcon(imageUrl);
     Image scaledImage = icon.getImage().getScaledInstance(175, 245, Image.SCALE_SMOOTH);
     JLabel cardLabel = new JLabel(new ImageIcon(scaledImage));
     return cardLabel;

@@ -1,7 +1,4 @@
 
-
-import javax.swing.JOptionPane;
-
 public class Player {
     int bet;
     int playerBalance = 10000;
