@@ -139,7 +139,8 @@ public void updateDealerCards(Dealer dealer){
     dealerCardsPanel.removeAll();
         for (int i = 0; i < dealer.hand.handCards.size(); i++){
             if(i == 0 && dealerHideCard){
-                ImageIcon icon = new ImageIcon("Blackjack/Blackjack/src/cards/BACK.png");
+                URL imageUrl = getClass().getResource("/cards/BACK.png");
+                ImageIcon icon = new ImageIcon(imageUrl);
                 Image scaledImage = icon.getImage().getScaledInstance(175, 245, Image.SCALE_SMOOTH);
                 JLabel cardLabel = new JLabel(new ImageIcon(scaledImage));
                 dealerCardsPanel.add(cardLabel);

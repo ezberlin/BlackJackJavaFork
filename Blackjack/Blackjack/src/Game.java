@@ -106,7 +106,7 @@ public class Game {
             }
             else{
             int continueplaying = JOptionPane.showConfirmDialog(null, "Do you want to continue playing?");
-            if(continueplaying == JOptionPane.NO_OPTION){
+            if(continueplaying != JOptionPane.YES_OPTION){
                 stoppedPlaying.add(players.get(i));
                 JOptionPane.showMessageDialog(null, "Thanks for playing!");
             }
