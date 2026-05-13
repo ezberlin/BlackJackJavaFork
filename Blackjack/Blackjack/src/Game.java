@@ -49,7 +49,7 @@ public class Game {
 
     public void betTurn() {
         for (int i = 0; i < players.size(); i++) {
-            int bet = getValidInt(players.get(i).name + ", your balance is: " + players.get(i).playerBalance + "$\nHow much do you want to bet?", 1, players.get(i).playerBalance);
+            int bet = getValidBet(players.get(i).name + ", your balance is: " + players.get(i).playerBalance + "$\nHow much do you want to bet? \n(enter \"all in\" for the maximum amount)", 1, players.get(i).playerBalance);
             players.get(i).bet(bet); 
         }
     }
@@ -129,6 +129,44 @@ public class Game {
             try {
                 String input = JOptionPane.showInputDialog(message);
                 if(input != null){
+                    int value = Integer.parseInt(input);
+                    if (value >= min && value <= max){
+                        return value;
+                    }
+                    JOptionPane.showMessageDialog(null, "Please enter a number between " + min + " and " + max);
+                }
+                else {
+                    int confirm = JOptionPane.showConfirmDialog(null, "Do you realy want to end the game?");
+
+                    if(confirm == JOptionPane.YES_OPTION){
+                        System.exit(0);
+                    }
+                    else{
+                        continue;
+                    }
+                }
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid number!");
+            }
+        }
+    }
+
+    /**
+     * Slightly adapted variation of getValidInt which supports an "All In" input
+     * @param message The message shown by the option pane to ask for input
+     * @param min The minimal amount of money allowed to bet
+     * @param max The maximum amount of money allowed to bet, taken as the "All in" bet
+     * @return The amount of money bet by the user
+     */
+    public int getValidBet(String message, int min, int max) {
+        while (true) {
+            try {
+                String input = JOptionPane.showInputDialog(message);
+                if(input != null){
+                    if (input.equals("all in")) {
+                        return max;
+                    }
                     int value = Integer.parseInt(input);
                     if (value >= min && value <= max){
                         return value;
